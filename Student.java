@@ -4,6 +4,14 @@ public class Student {
     private String name;
     private Integer age;
 
+    public Student(){
+
+    }
+
+    public Student(Integer age){
+        this.age = age;
+    }
+
     public String getName() {
         return name;
     }
