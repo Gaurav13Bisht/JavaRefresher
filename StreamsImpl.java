@@ -7,8 +7,8 @@ public class StreamsImpl {
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 1, 2));
         System.out.println(list);
 
-//        intermediateOperations(list);
-        terminalOperations(list);
+        intermediateOperations(list);
+//        terminalOperations(list);
     }
 
     private static void intermediateOperations(List<Integer> list) {
@@ -39,6 +39,28 @@ public class StreamsImpl {
         // SKIP
         List<Integer> skippedList = list.stream().skip(2).toList();
         System.out.println(skippedList);
+
+        // FLAT MAP
+        List<List<String>> list2 = new ArrayList<>();
+        list2.add(new ArrayList<>());
+        list2.get(0).add("Gaurav");
+        list2.get(0).add("Bisht");
+
+        list2.add(new ArrayList<>());
+        list2.get(1).add("Age");
+        list2.get(1).add("24");
+
+        // This looks like this:
+//        [{
+//            "Gaurav", "Bisht"
+//        },
+//        {
+//            "Age", "24"
+//        }]
+
+        // Now flatmap will make this nested list into a single level flat list
+        System.out.println(list2.stream().flatMap(x-> x.stream()).toList());
+
     }
 
     private static void terminalOperations(List<Integer> list) {
