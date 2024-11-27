@@ -53,19 +53,19 @@ public class IntroImpl {
 
         Custom custom = new Custom();
 
-        System.out.println("custom: " + custom.getState());              // MultiThreading.Custom thread: NEW
+        System.out.println("custom: " + custom.getState());              // Custom thread: NEW
 
         custom.start();
 
-        System.out.println("custom: " + custom.getState());              // MultiThreading.Custom thread: RUNNABLE
+        System.out.println("custom: " + custom.getState());              // Custom thread: RUNNABLE
 
         Thread.sleep(1000);
 
-        System.out.println("custom: " + custom.getState());             // MultiThreading.Custom thread: TIMED_WAITING
+        System.out.println("custom: " + custom.getState());             // Custom thread: TIMED_WAITING
 
         custom.join();    // This will make the main thread wait at this line for the custom thread to complete its execution
 
-        System.out.println("custom: " + custom.getState());             // MultiThreading.Custom thread: TERMINATED
+        System.out.println("custom: " + custom.getState());             // Custom thread: TERMINATED
 
         System.out.println("Inside Thread: " + Thread.currentThread().getName());
     }
@@ -74,13 +74,13 @@ public class IntroImpl {
 class Custom extends Thread{
 
     // To assign a custom name to the thread at time of creation
-//    public MultiThreading.Custom(String name){
+//    public Custom(String name){
 //        super(name);
 //    }
 
     @Override
     public void run(){
-        System.out.println("custom: " + this.getState());         // MultiThreading.Custom Thread: Runnable
+        System.out.println("custom: " + this.getState());         // Custom Thread: Runnable
 //        System.out.println("custom: " + Thread.currentThread().getState());
         System.out.println("Inside Thread: " + Thread.currentThread().getName());
 //        Thread.yield();
