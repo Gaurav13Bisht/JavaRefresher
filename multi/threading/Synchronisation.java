@@ -1,4 +1,4 @@
-package MultiThreading;
+package multi.threading;
 
 public class Synchronisation {
 
