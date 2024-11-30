@@ -3,12 +3,19 @@ package multi.threading;
 public class ThreadCommunicationImpl {
     public static void main(String[] args) {
         SharedResource resource = new SharedResource();
-        Runnable produceRunnable = new Runnable() {
-            @Override
-            public void run() {
-                for(int i = 0; i < 10; i ++){
-                    resource.produce(i);
-                }
+//        Runnable produceRunnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                for(int i = 0; i < 10; i ++){
+//                    resource.produce(i);
+//                }
+//            }
+//        };
+
+        // Using Lambda expression
+        Runnable produceRunnable = () -> {
+            for(int i = 0; i < 10; i ++){
+                resource.produce(i);
             }
         };
 
