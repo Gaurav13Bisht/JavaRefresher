@@ -22,6 +22,9 @@ public class ExecutorFrameworkImpl {
 
 //        executorService.shutdownNow();   // This will force shutdown when this line gets executed even if threads has not done the work yet
 
+        System.out.println(executorService.isShutdown());
+        System.out.println(executorService.isTerminated());
+
         try {
             // This will wait for the termination of service which we ordered with executorService.shutdown() for 3 seconds
             // the execution will wait here for 3 seconds if its terminated then return true and proceed with further execution of lines otherwise will return false
@@ -34,6 +37,7 @@ public class ExecutorFrameworkImpl {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+        System.out.println(executorService.isTerminated());
     }
 
     public static int factorial(int n){
