@@ -1,13 +1,12 @@
 package multi.threading;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class ExecutorFrameworkImpl {
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        ExecutorService executorService = Executors.newFixedThreadPool(9);  // Here we can mention the number of threads required
 
         for(int i = 1; i < 10; i++){
             int finalI = i;
@@ -23,15 +22,18 @@ public class ExecutorFrameworkImpl {
 
 //        executorService.shutdownNow();   // This will force shutdown when this line gets executed even if threads has not done the work yet
 
-        boolean terminatedGracefully = false;
         try {
-            terminatedGracefully = executorService.awaitTermination(3, TimeUnit.SECONDS);     // This will wait for the termination of service which we ordered with executorService.shutdown() for 3 seconds
-                                                                               // the execution will wait here for 3 seconds if its terminated then return true and proceed with further execution of lines otherwise will return false
+            // This will wait for the termination of service which we ordered with executorService.shutdown() for 3 seconds
+            // the execution will wait here for 3 seconds if its terminated then return true and proceed with further execution of lines otherwise will return false
+            if (executorService.awaitTermination(3, TimeUnit.SECONDS)) {
+                System.out.println("All tasks completed within the timeout.");
+            } else {
+                System.out.println("Timeout elapsed before completion. Force shutting down.");
+                executorService.shutdownNow();
+            }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-
-        System.out.println("All threads work done and thread pool closed !! Graceful Termination = " + terminatedGracefully);
     }
 
     public static int factorial(int n){
