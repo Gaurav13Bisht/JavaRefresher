@@ -1,4 +1,4 @@
-package multi.threading;
+package multi.threading.executorframework;
 
 import java.util.Arrays;
 import java.util.List;
