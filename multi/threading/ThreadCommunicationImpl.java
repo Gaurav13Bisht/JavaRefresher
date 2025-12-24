@@ -66,9 +66,10 @@ class SharedResource {
             }
         }
         hasData = false;
-        notify();
         final Integer incomingValue = this.value;
         this.value = null;
+
+        notify();
         System.out.println("Consumed: " + incomingValue);
         return incomingValue;
     }
