@@ -3,43 +3,63 @@ package multi.threading;
 public class Synchronisation {
 
     public static void main(String[] args) throws InterruptedException {
-        Counter counter = new Counter();
+            CounterP counter = new CounterP();
+            // Using anonymous class
+//        Thread thread1 = new Thread(){
+//            @Override
+//            public void run(){
+//                for(int i = 1; i <= 100; i++){
+//                    counter.incrementCounter();
+//                }
+//            }
+//        };
 
-        Thread thread1 = new Thread(counter);
-        thread1.start();
+            Thread thread1 = new Thread(() -> {
+                for(int i = 1; i <= 10000; i++){
+                    counter.incrementCounter();
+                }
+            });
 
-        Thread thread2 = new Thread(counter);
-        thread2.start();
+//        or we can create via :
+            Runnable runnable = () ->{
+                for(int i = 1; i <= 10000; i++){
+                    counter.incrementCounter();
+                }
+            };
 
-        thread1.join();
-        thread2.join();
+            Thread thread2 = new Thread(runnable);
 
-        System.out.println(counter.getCount());
-    }
-}
+            // Note: We can't do lambda directly for Thread class since its a class not functional interface
 
-class Counter implements Runnable{
+            thread1.start();
+            thread2.start();
 
-    private Integer count;
+            thread1.join();
+            thread2.join();
+            System.out.println(counter.getCount());
 
-    public Counter(){
-        count = 0;
-    }
 
-    public Integer getCount(){
-        return count;
-    }
-
-    public synchronized void countIncrement(){
-//        synchronized (this){
-            this.count++;
-//        }
-    }
-
-    @Override
-    public void run(){
-        for(int i = 0; i < 1000; i++) {
-            countIncrement();
         }
     }
+
+
+class CounterP{
+
+    private int count;
+
+    public CounterP(){
+        this.count = 0;
+    }
+
+    // synchronized uses intrinsic locks which are implicit (second one is called extrinsic or explicit)
+    public synchronized void incrementCounter(){
+//      synchronized (this) {
+            this.count++;       // This is CRITICAL SECTION i.e. which changes a shared resource
+//       }
+    }
+
+    public int getCount(){
+        return this.count;
+    }
+
 }
