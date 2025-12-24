@@ -1,3 +1,5 @@
+package general;
+
 import java.util.ArrayList;
 
 class StudentWithComparable implements Comparable<StudentWithComparable>{
@@ -11,7 +13,7 @@ class StudentWithComparable implements Comparable<StudentWithComparable>{
 
     @Override
     public String toString() {
-        return "StudentWithComparable{" +
+        return "general.StudentWithComparable{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';

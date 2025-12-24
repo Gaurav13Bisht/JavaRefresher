@@ -1,3 +1,5 @@
+package general;
+
 import java.util.*;
 
 class StudentComparator implements Comparator<Student> {
@@ -22,7 +24,7 @@ public class ComparatorImpl {
         studentList.add(student2);
 
         studentList.sort(new StudentComparator());
-//        Collections.sort(studentList, new StudentComparator());
+//        Collections.sort(studentList, new general.StudentComparator());
 
         System.out.println(studentList);
     }

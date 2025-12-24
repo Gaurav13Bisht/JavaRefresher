@@ -1,3 +1,5 @@
+package general;
+
 interface AddNumbers{
     public int calculate(int a, int b);
 }
@@ -34,8 +36,8 @@ public class LambdaExpImpl {
                             };
 
         // More shorter versions:
-//        AddNumbers obj2 = (a, b) -> a + b;
-//        AddNumbers obj2 = Integer::sum;   // This is called Method reference
+//        general.AddNumbers obj2 = (a, b) -> a + b;
+//        general.AddNumbers obj2 = Integer::sum;   // This is called Method reference
 
         System.out.println(obj2.calculate(1, 2));
     }

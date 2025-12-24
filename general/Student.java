@@ -1,3 +1,5 @@
+package general;
+
 import java.util.Objects;
 
 public class Student {
@@ -30,7 +32,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "general.Student{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';

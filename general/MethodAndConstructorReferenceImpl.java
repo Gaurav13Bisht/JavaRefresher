@@ -1,3 +1,5 @@
+package general;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +35,7 @@ public class MethodAndConstructorReferenceImpl {
 
     @Override
     public String toString() {
-        return "MethodAndConstructorReferenceImpl{" +
+        return "general.MethodAndConstructorReferenceImpl{" +
                 "count=" + count +
                 '}';
     }

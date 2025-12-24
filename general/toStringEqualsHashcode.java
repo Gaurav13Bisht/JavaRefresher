@@ -1,3 +1,5 @@
+package general;
+
 public class toStringEqualsHashcode {
 
     public static void main(String... args) {

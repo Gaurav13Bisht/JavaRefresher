@@ -1,4 +1,5 @@
-import java.util.Random;
+package general;
+
 import java.util.function.*;
 
 public class FunctionalInterfacesImpl {

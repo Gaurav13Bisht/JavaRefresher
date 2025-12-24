@@ -1,3 +1,5 @@
+package general;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -16,7 +18,7 @@ public class StreamsImpl {
         List<Integer> updatedList = list.stream().filter(x -> x % 2 == 0).toList();
         System.out.println(updatedList);
 
-        // MAP to Student list
+        // MAP to general.Student list
         List<Student> studentList = list.stream().map(Student::new).toList();
         System.out.println(studentList);
 
