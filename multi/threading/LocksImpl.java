@@ -30,10 +30,10 @@ class Transfer implements Runnable{
             // This will wait till the lock is released by the other thread if acquired
             // lock.lock();
 
-            // This will check if the lock is not acquired by other thread and return true else false.
+            // This will check if the lock is not acquired by other thread, if true it acquire then return true, if false just return false.
             // if(lock.tryLock()){
 
-            // This will check if the lock is not acquired by other thread and return true else wait for the given
+            // This will check if the lock is not acquired by other thread and acquire it and return true else wait for the given
             // time period and keeps checking and return true if lock is free otherwise returns false if time period is over
             if (lock.tryLock(4000, TimeUnit.MILLISECONDS)) {
                 System.out.println(Thread.currentThread().getName() + " is sending 50$ to beneficiary !!");

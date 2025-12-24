@@ -47,7 +47,7 @@ class Counter2{
 
     private Integer count = 0;
 
-    private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+    private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
     private final Lock readLock = readWriteLock.readLock();
     private final Lock writeLock = readWriteLock.writeLock();
@@ -84,4 +84,9 @@ class Counter2{
 
         readLock.unlock();
     }
+
+//    ReadWriteLock Behavior
+//    WRITELock  → blocks READ + WRITELock
+//    READLock   → blocks WRITELock only
+//    READ + READ → allowed
 }
