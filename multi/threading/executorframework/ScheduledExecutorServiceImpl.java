@@ -1,5 +1,6 @@
 package multi.threading.executorframework;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -8,27 +9,40 @@ public class ScheduledExecutorServiceImpl {
     public static void main(String[] args) {
 
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(10);
-
+        System.out.println(LocalDateTime.now().toLocalTime().getSecond());
+        // This will be executed only once after 3 seconds (delay)
         scheduledExecutorService.schedule(()->{
-            System.out.println("This will run after 3 seconds !");
+            System.out.println("Task 1 completed at :" + LocalDateTime.now().toLocalTime().getSecond());
         },3, TimeUnit.SECONDS);
 
-        // Schedules a task to start at a fixed interval between the start of successive executions.
+        // This will be executed after initial delay of 4 seconds and then at each 2 seconds
         scheduledExecutorService.scheduleAtFixedRate(()->{
-            System.out.println("This will run after 4 seconds of each start time and every 2 seconds !");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Task 2 completed :" + LocalDateTime.now().toLocalTime().getSecond());
         }, 4, 2, TimeUnit.SECONDS);
 
-        // Schedules a task to execute with a fixed delay between the end of one execution and the start of the next.
+        // This will be executed after initial delay of 4 seconds and then at each 2 seconds but the difference here in
+        // AtFixedRate, next execution will start after 2 seconds of start time of previous execution but in
+        // WithFixedDelay, next execution will start after 2 seconds of end time of previous execution
         scheduledExecutorService.scheduleWithFixedDelay(()->{
-            System.out.println("This will run after 5 seconds of each end time and with 3 seconds delay!");
-        }, 5, 3, TimeUnit.SECONDS);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Task 3 completed :" + LocalDateTime.now().toLocalTime().getSecond());
+        }, 5, 2, TimeUnit.SECONDS);
 
 //        scheduledExecutorService.shutdown();     // In case of scheduleAtFixedRate and scheduleWithFixedDelay, this will shutdown it too
 
         scheduledExecutorService.schedule(()->{
-            System.out.println("Shutting down after 10 seconds !");
+            System.out.println("Task Final completed :" + LocalDateTime.now().toLocalTime().getSecond());
             scheduledExecutorService.shutdown();
-        },10, TimeUnit.SECONDS);
+        },20, TimeUnit.SECONDS);
 
     }
 }
