@@ -10,7 +10,7 @@ public class ExecutorFrameworkImpl {
 
         for(int i = 1; i < 10; i++){
             int finalI = i;
-            executorService.submit(()->{
+            executorService.submit(()->{            // .execute() is also there which is fire-and-forget i.e. it only takes runnable as argument and doesn’t return anything whereas .submit() can also return a value using callable.
                 int factorial = factorial(finalI);
                 System.out.println(factorial);
             });
