@@ -4,7 +4,7 @@ public class ThreadLifecycle {
     public static void main(String[] args) throws InterruptedException {
 
         Custom3 thread = new Custom3();
-        System.out.println("Inside main custom 1 " + thread.getState());                // RUNNABLE
+        System.out.println("Inside main custom 1 " + thread.getState());                // NEW
         System.out.println("Inside main MAIN 1 " + Thread.currentThread().getState());  // RUNNABLE
         thread.start();
 //        thread.run();  // If used this then it do not create a new thread but passes the control to the run method and
