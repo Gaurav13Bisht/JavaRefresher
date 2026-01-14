@@ -1,7 +1,5 @@
 package general;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class SingletonClass {
     // Early initialization:
     // Since instance is created at class construction, its thread-safe by default
@@ -30,10 +28,12 @@ public class SingletonClass {
 //        if(instance == null){                   // This alone is not thread safe, need locking
 //            instance = new SingletonClass();
 //        }
-
-        synchronized (SingletonClass.class){
-            if(instance == null){
-                instance = new SingletonClass();
+        // Double-checked locking
+        if(instance == null) {
+            synchronized (SingletonClass.class) {
+                if (instance == null) {
+                    instance = new SingletonClass();
+                }
             }
         }
         return instance;
